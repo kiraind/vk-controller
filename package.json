@@ -1,0 +1,24 @@
+{
+    "name": "vk-controller",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kiraind/vk-controller.git"
+    },
+    "author": "kiraind",
+    "license": "UNLICENSED",
+    "bugs": {
+        "url": "https://github.com/kiraind/vk-controller/issues"
+    },
+    "homepage": "https://github.com/kiraind/vk-controller#readme",
+    "dependencies": {
+        "@kiraind/russian-tools": "^1.0.1",
+        "easyvk": "^2.5.1"
+    }
+}
