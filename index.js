@@ -36,7 +36,7 @@ easyvk({
                 numToText(count)
             } ${
                 selectPostnumberCase(count, ['подписчик', 'подписчика', 'подписчиков'])
-            } это сейчас модно`
+            } это сейчас модно\n\n______\n[1] An altimeter is an instrument used to measure how high you currently are.`
         })
     }
 
