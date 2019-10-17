@@ -5,8 +5,10 @@ const user_token = process.env.USER_TOKEN
 let user_vk = undefined
 
 const easyvk = require('easyvk')
-const { selectPostnumberCase } = require('@kiraind/russian-tools').word_utils
-const numToText = require('./numToText.js')
+const {
+    selectPostnumberCase,
+    textifyNumber
+} = require('@kiraind/russian-tools').word_utils
 
 easyvk({
     access_token: user_token
@@ -33,10 +35,10 @@ easyvk({
         if(user_vk) await user_vk.call('groups.edit', {
             group_id,
             description: `завести свою группу на ${
-                numToText(count)
+                textifyNumber(count)
             } ${
                 selectPostnumberCase(count, ['подписчик', 'подписчика', 'подписчиков'])
-            } это сейчас модно\n\n______\n[1] An altimeter is an instrument used to measure how high you currently are.`
+            } это сейчас модно`
         })
     }
 

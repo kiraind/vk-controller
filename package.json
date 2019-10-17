@@ -18,7 +18,7 @@
     },
     "homepage": "https://github.com/kiraind/vk-controller#readme",
     "dependencies": {
-        "@kiraind/russian-tools": "^1.0.1",
+        "@kiraind/russian-tools": "^1.0.3",
         "easyvk": "^2.5.1"
     }
 }
