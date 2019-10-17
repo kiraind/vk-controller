@@ -60,7 +60,7 @@ easyvk({
             })
         }
 
-        await saveLog( (new Date()).toISOString() + ';' + count )
+        await saveLog( (new Date()).toISOString() + ';' + count + '\n')
     }
 
     connection.on('group_join', onCountUpdate)
