@@ -4,6 +4,8 @@ const group_id = 186528519
 const user_token = process.env.USER_TOKEN
 let user_vk = undefined
 
+const fsPromises = require('fs').promises
+
 const easyvk = require('easyvk')
 const {
     selectPostnumberCase,
@@ -32,16 +34,39 @@ easyvk({
 
         console.log(`upd: ${count}`)
 
-        if(user_vk) await user_vk.call('groups.edit', {
-            group_id,
-            description: `завести свою группу на ${
-                textifyNumber(count)
-            } ${
-                selectPostnumberCase(count, ['подписчик', 'подписчика', 'подписчиков'])
-            } это сейчас модно`
-        })
+        let word = selectPostnumberCase(
+            count,
+            ['подписчик', 'подписчика', 'подписчиков']
+        )
+        let number = textifyNumber(count)
+
+        if(word === 'подписчик') {
+            word = 'подписчика'
+            number = number
+                .split(' ')
+                .slice(0, -1)
+                .concat('одного')
+                .join(' ')
+        }
+
+        if(user_vk) {
+            await user_vk.call('groups.edit', {
+                group_id,
+                description: `завести свою группу на ${
+                    number
+                } ${
+                    word
+                } это сейчас модно`
+            })
+        }
+
+        await saveLog( (new Date()).toISOString() + ';' + count )
     }
 
     connection.on('group_join', onCountUpdate)
     connection.on('group_leave', onCountUpdate)
 })
+
+async function saveLog(str) {
+    await fsPromises.appendFile('history.csv', str, 'utf8')
+}
