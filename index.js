@@ -24,7 +24,9 @@ easyvk({
 }).then(async vk => {
     const { connection } = await vk.bots.longpoll.connect()
 
-    async function onCountUpdate() {
+    async function onCountUpdate(params) {
+        const { user_id } = params
+
         const { vkr: response } = await vk.call('groups.getById', {
             group_id, 
             fields: 'members_count'
@@ -60,7 +62,7 @@ easyvk({
             })
         }
 
-        await saveLog( (new Date()).toISOString() + ';' + count + '\n')
+        await saveLog( (new Date()).toISOString() + ';' + count + ';' + user_id + '\n')
     }
 
     connection.on('group_join', onCountUpdate)
